@@ -36,8 +36,8 @@ const InitialLayout = () => {
     const inTabsGroup = segments[0] === '(auth)';
 
     if (isSignedIn && !inTabsGroup) {
-      router.replace('/home');
-    } else if (!isSignedIn) {
+      router.replace('/home' as never);
+    } else if (isSignedIn === false) {
       router.replace('/login');
     }
   }, [isSignedIn]);

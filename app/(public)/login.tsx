@@ -20,7 +20,24 @@ const login = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const onSignInPress = async () => {
+    if (!isLoaded) {
+      return;
+    }
+
     setLoading(true);
+
+    try {
+      const completeSignIn = await signIn.create({
+        identifier: email,
+        password,
+      });
+
+      await setActive({ session: completeSignIn.createdSessionId });
+    } catch (error: any) {
+      Alert.alert('Error', error || 'An error occurred during login.');
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <View style={styles.container}>

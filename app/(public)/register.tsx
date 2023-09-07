@@ -32,6 +32,7 @@ const register = () => {
       setLoading(false);
     }
   };
+
   const onPressVerify = async () => {
     if (!isLoaded) {
       return;

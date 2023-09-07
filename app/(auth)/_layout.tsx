@@ -31,6 +31,7 @@ const TabsPage = () => {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" size={size} />
           ),
+          headerShown: false,
           tabBarLabel: 'Home',
         }}
         redirect={!isSignedIn}
