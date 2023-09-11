@@ -34,7 +34,8 @@ const login = () => {
 
       await setActive({ session: completeSignIn.createdSessionId });
     } catch (error: any) {
-      Alert.alert('Error', error || 'An error occurred during login.');
+      Alert.alert('Error', error.message || 'An error occurred during login.');
+      console.log(error);
     } finally {
       setLoading(false);
     }

@@ -32,7 +32,6 @@ const InitialLayout = () => {
 
   useEffect(() => {
     console.log('isSignedIn', isSignedIn);
-
     const inTabsGroup = segments[0] === '(auth)';
 
     if (isSignedIn && !inTabsGroup) {
