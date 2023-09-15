@@ -84,12 +84,29 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
   },
+  gameInputContainer: {
+    width: '100%',
+    minHeight: 100,
+    backgroundColor: 'white',
+    paddingVertical: 30,
+    paddingHorizontal: 15,
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
   messaginginput: {
     borderWidth: 1,
     padding: 15,
     flex: 1,
     marginRight: 10,
     borderRadius: 20,
+  },
+  scoringInput: {
+    borderWidth: 1,
+    padding: 15,
+    flex: 1,
+    marginLeft: 160,
+    marginRight: 20,
+    borderRadius: 10,
   },
   messagingbuttonContainer: {
     width: '30%',
@@ -99,6 +116,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 50,
   },
+  liveScoringButtonContainer: {
+    width: '30%',
+    backgroundColor: 'green',
+    borderRadius: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 50,
+  },
+
   modalbutton: {
     width: '40%',
     height: 45,

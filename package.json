@@ -9,6 +9,7 @@
     "web": "expo start --web",
     "test": "jest --watchAll"
   },
+  "proxy": "http://localhost:4000",
   "jest": {
     "preset": "jest-expo"
   },

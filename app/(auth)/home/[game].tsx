@@ -20,8 +20,8 @@ const game = () => {
       {game === 'newgame' ? (
         <>
           <Stack.Screen options={{ headerTitle: `New Game` }} />
-          {/* <Game /> */}
-          <Chat socket={socket} />
+          <Game socket={socket} />
+          {/* <Chat socket={socket} /> */}
         </>
       ) : (
         <>

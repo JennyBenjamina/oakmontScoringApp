@@ -23,6 +23,11 @@ const home = () => {
           <Text>Click to Resume a Game</Text>
         </Pressable>
       </Link>
+      <Link href="/home/scroll" asChild>
+        <Pressable>
+          <Text>Click to Scroll</Text>
+        </Pressable>
+      </Link>
     </View>
   );
 };

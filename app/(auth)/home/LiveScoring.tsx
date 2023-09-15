@@ -1,18 +1,26 @@
-import React, { useLayoutEffect, useState, useEffect, useContext } from 'react';
-import { View, TextInput, Text, FlatList, Pressable } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useLayoutEffect, useState, useEffect } from 'react';
+import {
+  View,
+  TextInput,
+  Text,
+  FlatList,
+  Pressable,
+  StyleSheet,
+} from 'react-native';
+// import { styles } from '../../../utils/styles';
 import MessageComponent from '../../../components/MessageComponent';
-import { styles } from '../../../utils/styles';
 
 import { useLocalSearchParams } from 'expo-router';
 
 import { useUser } from '@clerk/clerk-expo';
 
+import ScoreCard from '../../../components/ScoreCard';
+
 import SocketIOClient from 'socket.io-client';
 
 const socket = SocketIOClient('http://192.168.1.69:4000');
 
-const Messaging = () => {
+const LiveScoring = () => {
   const { user } = useUser();
 
   const [firstName, setFirstName] = useState(user?.firstName);
@@ -53,7 +61,7 @@ const Messaging = () => {
     //   setChatMessages([...chatMessages, roomChats])
     // );
 
-    socket.on('roomMessage', (message) => {
+    socket.on('roomMessage', (message: any) => {
       console.log('message received');
       setChatMessages(message);
     });
@@ -108,42 +116,68 @@ const Messaging = () => {
     });
   };
 
-  return (
-    <View style={styles.messagingscreen}>
-      <View
-        style={[
-          styles.messagingscreen,
-          { paddingVertical: 15, paddingHorizontal: 10 },
-        ]}
-      >
-        {chatMessages[0] ? (
-          <FlatList
-            data={chatMessages}
-            renderItem={({ item }) => (
-              <MessageComponent item={item} user={user} />
-            )}
-          />
-        ) : (
-          ''
-        )}
-      </View>
+  const scoreCard = [
+    {
+      text: ['Hole', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Out'],
+    },
+    {
+      text: ['Yards', '1', '2', '3', '4', '5', '6', '7', '8', '9', '3500'],
+    },
+    {
+      text: ['Par', '5', '4', '3', '4', '3', '4', '4', '5', '4', '36'],
+    },
+    {
+      text: ['stroke index', '1', '2', '3', '4', '5', '6', '7', '8', '9', ''],
+    },
+    {
+      text: ['Score', '', '', '', '', '', '', '', '', '', ''],
+    },
+  ];
 
-      <View style={styles.messaginginputContainer}>
-        <TextInput
-          style={styles.messaginginput}
-          onChangeText={(value) => setMsg(value)}
-        />
-        <Pressable
-          style={styles.messagingbuttonContainer}
-          onPress={handleNewMessage}
-        >
-          <View>
-            <Text style={{ color: '#f2f0f1', fontSize: 20 }}>SEND</Text>
-          </View>
-        </Pressable>
-      </View>
-    </View>
+  return (
+    // <View style={styles.messagingscreen}>
+    //   <View
+    //     style={[
+    //       styles.messagingscreen,
+    //       { paddingVertical: 15, paddingHorizontal: 10 },
+    //     ]}
+    //   >
+
+    //     {chatMessages[0] ? (
+    //       <FlatList
+    //         data={chatMessages}
+    //         renderItem={({ item }) => (
+    //           <MessageComponent item={item} user={user} />
+    //         )}
+    //       />
+    //     ) : (
+    //       ''
+    //     )}
+    //   </View>
+
+    //   <View style={styles.gameInputContainer}>
+    //     <TextInput
+    //       style={styles.scoringInput}
+    //       onChangeText={(value) => setMsg(value)}
+    //     />
+    //     <Pressable
+    //       style={styles.liveScoringButtonContainer}
+    //       onPress={handleNewMessage}
+    //     >
+    //       <View>
+    //         <Text style={{ color: '#f2f0f1', fontSize: 20 }}>SEND</Text>
+    //       </View>
+    //     </Pressable>
+    //   </View>
+    // </View>
+    <ScoreCard />
   );
 };
-
-export default Messaging;
+const styles = StyleSheet.create({
+  container: {
+    // flex: 1,
+    // padding: 16,
+    backgroundColor: '#f0f0f0',
+  },
+});
+export default LiveScoring;
