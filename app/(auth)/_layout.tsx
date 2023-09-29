@@ -37,6 +37,17 @@ const TabsPage = () => {
         redirect={!isSignedIn}
       />
       <Tabs.Screen
+        name="currGames"
+        options={{
+          headerTitle: 'Current Games',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="golf-outline" size={size} />
+          ),
+          tabBarLabel: 'Current Games',
+        }}
+        redirect={!isSignedIn}
+      />
+      <Tabs.Screen
         name="profile"
         options={{
           headerTitle: 'My Profile',
